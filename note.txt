@@ -1,0 +1,11 @@
+// Resource: Students
+
+// Client:Request => 
+//=> Server (root -> [General-Middleware] -> Router ->
+//-> [Resource-Middleware] -> Resource Handler(Controller) ->
+//-> [Resource-Middleware] -> [General-Middleware]):Response => 
+//=> Client
+
+// Controller: HTTP Request, HTTP Response
+// Service: Data Manipulations, Actions
+// Repositories: Data Storage
