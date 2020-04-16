@@ -27,7 +27,7 @@ class dependencyManager {
       );
 
     const { builder, mode, instance } = this.#dependencies[id];
-    switch (this.#dependencies[id].mode) {
+    switch (mode) {
       case 'transient':
         return builder(options);
       case 'singleton':

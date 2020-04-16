@@ -11,7 +11,8 @@ export const handlerBuilder = (handler) => {
       const body = req.body;
       const params = req.params;
       const query = req.query;
-      const [status, data] = await handler(query, params, body);
+      const header = req.header;
+      const [status, data] = await handler(query, params, body, header);
       if (data) {
         res.locals.status = status;
         res.locals.data = data;
@@ -33,6 +34,7 @@ export const handlerBuilder = (handler) => {
           message: error.message,
         };
       }else {
+        console.error(error);
         res.locals.error = {
           code: SERVER_ERROR,
           message: 'Internal Server Error',

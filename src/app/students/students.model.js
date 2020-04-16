@@ -8,7 +8,7 @@ export function validateCreate(body) {
   const lastNameIsNotNull = Boolean(body.lastName);
   if (!lastNameIsNotNull) results.push('LastName is required');
 
-  const ageIsNotNull = Boolean(body.age > 20);
+  const ageIsNotNull = Boolean(body.age);
   if (!ageIsNotNull) results.push('Age is required');
 
   const ageIsGreaterThan20 = Boolean(body.age > 20);
@@ -37,7 +37,7 @@ export function validateReplace(body) {
   const lastNameIsNotNull = Boolean(body.lastName);
   if (!lastNameIsNotNull) results.push('LastName is required');
 
-  const ageIsNotNull = Boolean(body.age > 20);
+  const ageIsNotNull = Boolean(body.age);
   if (!ageIsNotNull) results.push('Age is required');
 
   const ageIsGreaterThan20 = Boolean(body.age > 20);
