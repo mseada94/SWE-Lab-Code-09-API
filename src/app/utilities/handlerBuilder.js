@@ -12,10 +12,11 @@ export const handlerBuilder = (handler) => {
       const params = req.params;
       const query = req.query;
       const header = req.header;
-      const [status, data] = await handler(query, params, body, header);
+      const [status, data, cookies] = await handler(query, params, body, header);
       if (data) {
         res.locals.status = status;
         res.locals.data = data;
+        res.locals.cookies = cookies;
       } else {
         res.locals.error = {
           code: NOT_FOUND,
@@ -28,12 +29,22 @@ export const handlerBuilder = (handler) => {
           code: BAD_REQUEST,
           message: error.message,
         };
-      } else if(error.name === 'NotFoundError'){
+      } else if (error.name === 'UnauthorizedError') {
+        res.locals.error = {
+          code: UNAUTHORIZED,
+          message: 'Unauthorized Access: Please send your authentication token',
+        };
+      } else if (error.name === 'DuplicatedUsernameError') {
+        res.locals.error = {
+          code: BAD_REQUEST,
+          message: error.message,
+        };
+      } else if (error.name === 'NotFoundError') {
         res.locals.error = {
           code: NOT_FOUND,
           message: error.message,
         };
-      }else {
+      } else {
         console.error(error);
         res.locals.error = {
           code: SERVER_ERROR,

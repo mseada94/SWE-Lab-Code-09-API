@@ -4,6 +4,7 @@ import config from './app/config';
 import dependencyManager from './libs/dependency-manager';
 import { StudentsMemoryRepository } from './app/students';
 import { StudentsMongoRepository } from './app/students';
+import { UsersMongoRepository } from './app/users';
 
 async function registerDefaultDependencies() {
   const dbConnection = await MongoClient.connect(config.mongoUrl, {
@@ -16,6 +17,12 @@ async function registerDefaultDependencies() {
   dependencyManager.register(
     'students.repository',
     () => new StudentsMongoRepository(),
+    'singleton',
+  );
+
+  dependencyManager.register(
+    'users.repository',
+    () => new UsersMongoRepository(),
     'singleton',
   );
 }

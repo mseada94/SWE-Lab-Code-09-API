@@ -6,4 +6,5 @@ export default {
   port: '5000',
   mongoUrl: 'mongodb://localhost:27017',
   dbName: 'swe',
+  secret: 'secret'
 };
