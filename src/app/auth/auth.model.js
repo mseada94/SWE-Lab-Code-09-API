@@ -9,5 +9,5 @@ export function validateLogin(body) {
   if (!passwordIsNotNull) results.push('Password is required');
 
   if (results.length > 0)
-    throw new ValidationError(`Invalid student: ${results.join(', ')}`);
+    throw new ValidationError(`Invalid Request: ${results.join(', ')}`);
 }

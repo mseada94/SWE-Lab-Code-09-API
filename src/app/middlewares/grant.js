@@ -10,7 +10,7 @@ export default function grant(...roles) {
         code: UNAUTHORIZED,
         message: 'Unauthorized Access: Please send your authentication token',
       };
-      next();
+      return next();
     }
     if (!isAllowed(req.user.role))
       res.locals.error = {
